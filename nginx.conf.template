@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name __projectname__.dev __projectname__.dev;
+    server_name __projectname__.dev;
     root /var/www/html/__projectname__/web;
 
     location / {

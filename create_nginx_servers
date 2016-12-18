@@ -10,8 +10,7 @@ do
         dir=${dir##*/}
         echo "Create Symfony nginx server file for ${dir} project with php-fpm ${FPM_HOST}:${FPM_PORT}"
 
-        sed -e "s/__projectname__/${dir}/g;s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.
-d/nginx.conf.template > /etc/nginx/conf.d/${dir}.conf
+        sed -e "s/__projectname__/${dir}/g;s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/${dir}.conf
 
         sed -i "/<li>/i <li><a href="http://local.${dir}.dev/">${dir}</a></li>" /usr/share/nginx/html/index.html
 

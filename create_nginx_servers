@@ -2,6 +2,10 @@
 
 echo "Create nginx server files"
 i=0
+
+#add hostname to hosts file
+echo "127.0.0.1 *.dev" >> /etc/hosts
+
 for dir in /var/www/html/*/
 do
     if [ -e $dir/web/app_dev.php ]
@@ -12,11 +16,10 @@ do
 
         sed -e "s/__projectname__/${dir}/g;s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/${dir}.conf
 
-        sed -i "/<li>/i <li><a href="http://local.${dir}.dev/">${dir}</a></li>" /usr/share/nginx/html/index.html
-	#add hostname to hosts file
-	echo "127.0.0.1 docker.${dir}.dev local.${dir}.dev" >> /etc/hosts
+        sed -i "/<li>/i <li><a href="http://${dir}.dev/">${dir}</a></li>" /usr/share/nginx/html/index.html
         i=$(($i+1))
     fi
+
 done
 
 

@@ -1,7 +1,7 @@
 # nginx-symfony
 repository for nginx docker
 
-## Usage
+# Usage
 
 ### Development env with docker-compose.yml
 
@@ -19,8 +19,9 @@ services:
     depends_on:
       - php
     links:
-      - php
-
+      - php:phpfpmhost
+    environment:
+      - FPM_HOST=phpfpmhost  
   php:
     image: jvancoillie/php-fpm-symfony
     volumes:

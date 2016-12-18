@@ -1,7 +1,7 @@
 server {
     listen 80;
     server_name docker.__projectname__.dev local.__projectname__.dev;
-    root /usr/share/nginx/__projectname__/;
+    root /var/www/html/__projectname__/;
 
     location / {
         # try to serve file directly, fallback to app_dev.php

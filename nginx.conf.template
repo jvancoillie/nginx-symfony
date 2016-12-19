@@ -4,13 +4,10 @@ server {
     root /var/www/html/;
 
     location / {
-        # try to serve file directly, fallback to app_dev.php
-        try_files $uri /app_dev.php$is_args$args;
+	autoindex on;
     }
     # DEV
-    # This rule should only be placed on your development environment
-    # In production, don't include this and don't deploy app_dev.php or config.php
-    location ~ ^/(app_dev|config)\.php(/|$) {
+    location ~ \.php$ {
         fastcgi_pass __fpmhost__:__fpmport__;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
@@ -18,12 +15,6 @@ server {
         fastcgi_param DOCUMENT_ROOT $realpath_root;
     }
     
-    # return 404 for all other php files not matching the front controller
-    # this prevents access to other php files you don't want to be accessible.
-    location ~ \.php$ {
-      return 404;
-    }
-
     error_log /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
 }

@@ -1,0 +1,6 @@
+#! /bin/bash
+
+
+#add hostname to hosts file
+sed -e ";s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/default.conf
+echo "Create nginx server file"

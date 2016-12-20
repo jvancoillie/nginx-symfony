@@ -1,6 +1,9 @@
 #! /bin/bash
 
-
-#add hostname to hosts file
-sed -e ";s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/default.conf
-echo "Create nginx server file"
+if [ -e /var/www/html/${PROJECT_NAME}/web/app_dev.php ]
+then
+  echo "Create Symfony project  nginx config"
+  sed -e "s/__projectname__/${PROJECT_NAME}/g;s/__fpmhost__/${FPM_HOST}/g;s/__fpmport__/${FPM_PORT}/g" /etc/nginx/conf.d/symfony.conf.template > /etc/nginx/conf.d/default.conf
+else
+  echo "${PROJECT_NAME} project does not exist or does not contain app_dev.php file!"
+fi

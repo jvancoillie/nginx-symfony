@@ -1,4 +1,6 @@
 # nginx-symfony
+[![](https://images.microbadger.com/badges/image/jvancoillie/nginx-symfony.svg)](https://microbadger.com/images/jvancoillie/nginx-symfony "Get your own image badge on microbadger.com")
+
 repository for nginx docker
 
 # Usage
